@@ -264,3 +264,39 @@ Fax: 1223 338564 / 332662;  E-mail: ngk@eng.cam.ac.uk
 Web home page: http://www.eng.cam.ac.uk/~ngk/
 
 .. vim:sw=4:sts=4:et
+
+Optimized ScatLayer fork
+------------------------
+
+This fork includes an optimized first-order DTCWT scattering path used for
+ScatYOLO integration.
+
+Compared with the original ``ScatLayer`` behavior, the optimized layer preserves
+the input spatial resolution for J=1 scattering:
+
+- Original RGB input shape: ``(N, 3, H, W)``
+- Optimized output shape: ``(N, 21, H, W)``
+
+For example, an RGB tensor of shape ``(2, 3, 640, 640)`` produces an output of
+shape ``(2, 21, 640, 640)``.
+
+This behavior is covered by ``tests/test_scatlayer_optimized.py``.
+
+Research context
+----------------
+
+This optimized scattering implementation is associated with the ScatYOLOv8+CBAM
+work on embedded small-ship segmentation and the related PhD thesis on real-time
+ship recognition and georeferencing for maritime situational awareness.
+
+If you use this optimized fork, please cite:
+
+- Borja Carrillo-Perez, Ángel Bueno Rodríguez, Sarah Barnes, Maurice Stephan:
+  "Enhanced Small Ship Segmentation with Optimized ScatYOLOv8+CBAM on Embedded
+  Systems." 2024 IEEE International Conference on Real-time Computing and
+  Robotics (RCAR), pp. 13-18, 2024. DOI: 10.1109/RCAR61438.2024.10670759.
+
+- Borja Jesus Carrillo Perez:
+  "Real-time Ship Recognition and Georeferencing for the Improvement of Maritime
+  Situational Awareness." Dissertation, University of Bremen, 2024.
+  DOI: 10.26092/elib/3265.

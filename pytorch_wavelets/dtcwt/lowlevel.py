@@ -253,8 +253,9 @@ def q2c(y, dim=-1):
     #  c----d
     # Combine (a,b) and (d,c) to form two complex subimages.
     y = y/np.sqrt(2)
-    a, b = y[:,:, 0::2, 0::2], y[:,:, 0::2, 1::2]
-    c, d = y[:,:, 1::2, 0::2], y[:,:, 1::2, 1::2]
+    # Optimized ScatLayer path: keep full-resolution subimages.
+    a, b = y, y
+    c, d = y, y
 
     #  return torch.stack((a-d, b+c), dim=dim), torch.stack((a+d, b-c), dim=dim)
     return ((a-d, b+c), (a+d, b-c))

@@ -84,7 +84,7 @@ class ScatLayerj1_f(torch.autograd.Function):
         ctx.combine_colour = combine_colour
 
         ll, reals, imags = fwd_j1(x, h0o, h1o, False, 1, mode)
-        ll = F.avg_pool2d(ll, 2)
+#        ll = F.avg_pool2d(ll, 2)
         if combine_colour:
             r = torch.sqrt(reals[:,:,0]**2 + imags[:,:,0]**2 +
                            reals[:,:,1]**2 + imags[:,:,1]**2 +
